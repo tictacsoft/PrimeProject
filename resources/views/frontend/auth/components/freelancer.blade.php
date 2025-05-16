@@ -15,10 +15,10 @@
             </div>
         </div>
     </div> --}}
-    <section class="contact-section ">
-        <div class="container d-flex  align-items-center">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-6">
+    <section class="contact-section">
+        <div class="container d-flex  justify-content-center  align-items-center">
+            <div class="row">
+                <div class="col-12 col-md-12">
                     <div class="card shadow">
                         <div class="card-header border-0 bg-white">
                            <h2 class="contact-title text-center my-2 mb-2">Freelancer</h2>
