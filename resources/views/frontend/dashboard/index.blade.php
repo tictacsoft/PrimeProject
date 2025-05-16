@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-lg-12 mb-3">
                     <h5>{{ Auth::user()->name }}</h5>
-                    <p>{{ Auth::user()->roles[0]['name'] }}</p>
+                    {{-- <p>{{ Auth::user()->roles[0]['name'] }}</p> --}}
                 </div>
                 <div class="col-lg-3">
                     <a href="#" class="text-decoration-none">
