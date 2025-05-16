@@ -1,28 +1,25 @@
 @extends('frontend.layout.master')
 @section('title', 'Dashboard')
 @section('content')
-    <div class="slider-area ">
-        <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-            data-background="assets/img/hero/about.jpg">
-            <div class="container">
+    
+            <div class="container mt-4">
                 <div class="row">
                     <div class="col-xl-12">
-                        <div class="hero-cap text-center">
+                        <div class="text-center">
                             <h2>Dashboard</h2>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-    </div>
+   
     <section class="contact-section">
         <div class="container">
-            <div class="row">
+            <div class="row d-flex justify-content-around">
                 <div class="col-lg-12 mb-3">
-                    <h5>{{ Auth::user()->name }}</h5>
+                    {{-- <h5>{{ Auth::user()->name }}</h5> --}}
                     {{-- <p>{{ Auth::user()->roles[0]['name'] }}</p> --}}
                 </div>
-                <div class="col-lg-3">
+                <div class="col-md-3 col-12 d-flex justify-content-md-start justify-content-center px-3 px-md-0 mb-3">
                     <a href="#" class="text-decoration-none">
                         <div class="card" style="width: 18rem;">
                             <img src="..." class="card-img-top" alt="...">
@@ -35,7 +32,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-md-3 col-12 d-flex justify-content-md-start justify-content-center px-3 px-md-0 mb-3">
                     <a href="#" class="text-decoration-none">
                         <div class="card" style="width: 18rem;">
                             <img src="..." class="card-img-top" alt="...">
@@ -48,7 +45,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-md-3 col-12 d-flex justify-content-md-start justify-content-center px-3 px-md-0 mb-3">
                     <a href="#" class="text-decoration-none">
                         <div class="card" style="width: 18rem;">
                             <img src="..." class="card-img-top" alt="...">
@@ -61,7 +58,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3">
+                {{-- <div class="col-lg-3">
                     <a href="/profile" class="text-decoration-none">
                         <div class="card" style="width: 18rem;">
                             <img src="https://i.pinimg.com/736x/8d/ff/49/8dff49985d0d8afa53751d9ba8907aed.jpg" class="card-img-top mx-auto w-50 my-3" alt="...">
@@ -80,7 +77,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> --}}
                 {{-- <div class="col-12">
                     <h2 class="contact-title text-center">{{ Auth::user()->roles[0]['name'] }}</h2>
                     <a href="/logout" class="btn btn-primary">Logout</a>

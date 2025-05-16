@@ -18,7 +18,7 @@ Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard']);
-    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 // Admin
