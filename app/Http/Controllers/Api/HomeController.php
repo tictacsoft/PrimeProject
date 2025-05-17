@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\JobRequest;
 
 class HomeController extends Controller
 {
@@ -35,10 +36,12 @@ class HomeController extends Controller
     }
 
     public function dashboard(){
-        return view('frontend.dashboard.index');
+        $jobRequests = JobRequest::with('user')->latest()->get();
+        return view('frontend.dashboard.index', compact('jobRequests'));
     }
 
     public function profile(){
         return view('frontend.profile.index');
     }
+
 }

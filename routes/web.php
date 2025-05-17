@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\api\ClientsController;
 use App\Http\Controllers\Api\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +18,10 @@ Route::post('/signin', [AuthController::class, 'signin']);
 Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', [HomeController::class, 'dashboard']);
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/job-request', [ClientsController::class, 'index'])->name('job-request');
+    Route::post('/job-request', [ClientsController::class, 'store'])->name('job-request.store');
 });
 
 // Admin
