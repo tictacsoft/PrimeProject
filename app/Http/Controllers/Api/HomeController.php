@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\JobRequest;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -36,7 +37,7 @@ class HomeController extends Controller
     }
 
     public function dashboard(){
-        $jobRequests = JobRequest::with('user')->latest()->get();
+        $jobRequests = JobRequest::where('user_id', auth::id())->get();
         return view('frontend.dashboard.index', compact('jobRequests'));
     }
 
