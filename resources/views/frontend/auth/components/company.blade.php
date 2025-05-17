@@ -23,7 +23,7 @@
                 <div class="col-12 col-md-12">
                     <div class="card shadow">
                         <div class="card-header border-0 bg-white">
-                           <h2 class="contact-title text-center my-2 mb-2">Company</h2>
+                           <h2 class="contact-title text-center my-2 mb-2">Supplier</h2>
                         </div>
                         <div class="card-body">
                             <div class="col-lg-12">

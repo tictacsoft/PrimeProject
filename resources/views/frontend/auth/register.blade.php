@@ -46,7 +46,7 @@
                         <div class="card mx-auto shadow" style="width: 18rem;">
                             <img src="https://i.pinimg.com/736x/d7/8f/8f/d78f8fa0cee7f78253a7a309ac5c408a.jpg" class="card-img-top mx-auto" alt="..." height="250" width="50">
                             <div class="card-body">
-                                <h5 class="card-title text-center">Company</h5>
+                                <h5 class="card-title text-center">Supplier</h5>
                             </div>
                         </div>
                     </a>
