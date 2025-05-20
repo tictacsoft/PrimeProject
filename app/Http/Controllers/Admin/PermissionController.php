@@ -33,10 +33,10 @@ class PermissionController extends Controller
     {
         $name = Str::slug($request->name);
         $data = [
-            ['name' => 'view ' . $name],
-            ['name' => 'add ' . $name],
-            ['name' => 'edit ' . $name],
-            ['name' => 'delete ' . $name],
+            ['name' => 'view_' . $name],
+            ['name' => 'add_' . $name],
+            ['name' => 'edit_' . $name],
+            ['name' => 'delete_' . $name],
         ];
 
         foreach ($data as $item) {

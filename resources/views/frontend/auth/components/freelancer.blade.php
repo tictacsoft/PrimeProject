@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <form class="form-contact" action="/signup" method="post">
                             @csrf
-                                <input name="role" id="role" type="hidden" value="freelancer">
+                                <input name="role" id="role" type="hidden" value="freelance">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
@@ -65,8 +65,8 @@
                     </form>
                         </div>
                     </div>
-                </div>    
-                
+                </div>
+
             </div>
         </div>
     </section>

@@ -28,7 +28,7 @@
                             <div class="col-lg-12">
                                 <form class="form-contact" action="/signup" method="post">
                                     @csrf
-                                    <input name="role" id="role" type="hidden" value="clients">
+                                    <input name="role" id="role" type="hidden" value="client">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-    </section>                    
+    </section>
 
 
 @endsection

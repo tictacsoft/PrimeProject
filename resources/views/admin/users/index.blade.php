@@ -49,13 +49,14 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phoneno }}</td>
                                             <td>
+                                                <a href="/admin/users/{{ $user->id }}/permissions" class="btn btn-sm btn-primary">Permission</a>
                                                 <button class="btn btn-warning btn-sm">Edit</button>
                                                 <button class="btn btn-danger btn-sm">Delete</button>
                                             </td>
                                         </tr>
                                     @empty
-                                        <tr colspan="5">
-                                            <td>Not Found</td>
+                                        <tr >
+                                            <td colspan="5">Not Found</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

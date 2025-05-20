@@ -35,7 +35,7 @@ class AuthController extends Controller
         $company_name = $request->company_name;
         $password = $request->password;
 
-        if ($role == "freelancer") {
+        if ($role == "freelance") {
             $user = User::create([
                 'name' => $name,
                 'email' => $email,
@@ -43,8 +43,8 @@ class AuthController extends Controller
                 'password' => Hash::make($password),
             ]);
 
-            $user->assignRole('Freelancer');
-        } else if ($role == "clients") {
+            $user->assignRole('freelance');
+        } else if ($role == "client") {
             $user = new User();
             $user->name = $name;
             $user->email = $email;
@@ -58,8 +58,8 @@ class AuthController extends Controller
             $clients->npwp = $npwp;
             $clients->save();
 
-            $user->assignRole('Clients');
-        }else if ($role == "company") {
+            $user->assignRole('client');
+        }else if ($role == "supplier") {
             $user = new User();
             $user->name = $name;
             $user->email = $email;
@@ -73,7 +73,7 @@ class AuthController extends Controller
             $company->npwp = $npwp;
             $company->save();
 
-            $user->assignRole('Company');
+            $user->assignRole('supplier');
         }
 
         return redirect('/');

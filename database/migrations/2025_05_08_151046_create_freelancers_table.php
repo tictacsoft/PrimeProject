@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('supplier_detail', function (Blueprint $table) {
+        Schema::create('freelance_details', function (Blueprint $table) {
             $table->id();
-            $table->string(column: 'user_id');
-            $table->text(column: 'supplier_name');
-            $table->text('npwp')->nullable();
+            $table->string('user_id');
+            $table->text('certification')->nullable();
+            $table->text('work_experience')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('supplier_detail');
+        Schema::dropIfExists('freelance_details');
     }
 };

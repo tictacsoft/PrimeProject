@@ -16,17 +16,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Permission::create(['name' => 'view roles']);
-        Permission::create(['name' => 'add roles']);
-        Permission::create(['name' => 'edit roles']);
-        Permission::create(['name' => 'delete roles']);
-
         $this->call([
             RoleSeeder::class,
             AdminUserSeeder::class,
         ]);
+        // Permission::create(['name' => 'view roles']);
+        // Permission::create(['name' => 'add roles']);
+        // Permission::create(['name' => 'edit roles']);
+        // Permission::create(['name' => 'delete roles']);
+
+        // $this->call([
+        //     RoleSeeder::class,
+        //     AdminUserSeeder::class,
+        // ]);
 
     }
 
-    
+
 }

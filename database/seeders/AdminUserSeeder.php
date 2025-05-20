@@ -17,18 +17,12 @@ class AdminUserSeeder extends Seeder
         $user = User::firstOrCreate(
             ['email' => 'admin@example.com'],
             [
-                'name' => 'Admin User',
+                'name' => 'Admin',
                 'phoneno' => '081234567890',
                 'password' => Hash::make('password'),
             ]
         );
 
-        
-        $role = Role::firstOrCreate(
-            ['name' => 'Admin', 'guard_name' => 'web']
-        );
-
-        
-        $user->assignRole($role);
+        $user->assignRole('admin');
     }
 }
