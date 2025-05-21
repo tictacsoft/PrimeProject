@@ -25,8 +25,8 @@ class HomeController extends Controller
             return view('frontend.auth.components.freelancer');
         } else if ($url == 'clients') {
             return view('frontend.auth.components.clients');
-        } else if ($url == 'company') {
-            return view('frontend.auth.components.company');
+        } else if ($url == 'supplier') {
+            return view('frontend.auth.components.supplier');
         } else {
             return view('frontend.auth.register');
         }
