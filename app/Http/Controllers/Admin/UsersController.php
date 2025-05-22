@@ -105,7 +105,6 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
 
         DB::transaction(function () use ($request, $user) {
-            // Update user
             $user->fill($request->except('roles', 'permissions'));
 
             $this->syncPermissions($request, $user);

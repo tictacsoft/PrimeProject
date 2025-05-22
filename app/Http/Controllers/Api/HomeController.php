@@ -37,8 +37,7 @@ class HomeController extends Controller
     }
 
     public function dashboard(){
-        $jobRequests = JobRequest::where('user_id', auth::id())->get();
-        return view('frontend.dashboard.index', compact('jobRequests'));
+        return view('frontend.dashboard.index');
     }
 
     public function profile(){

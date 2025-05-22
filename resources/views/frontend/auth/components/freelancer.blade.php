@@ -24,7 +24,7 @@
                            <h2 class="contact-title text-center my-2 mb-2">Freelancer</h2>
                         </div>
                         <div class="card-body">
-                            <form class="form-contact" action="/signup" method="post">
+                            <form class="form-contact" action="{{ route('signup') }}" method="post">
                             @csrf
                                 <input name="role" id="role" type="hidden" value="freelance">
                                 <div class="row">

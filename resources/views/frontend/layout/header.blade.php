@@ -32,11 +32,11 @@
                                 @auth
                                 <div class="d-flex justify-content-center">
                                     <!-- Tombol Dashboard -->
-                                    @unless(request()->is('dashboard'))
+                                    {{-- @unless(request()->is('dashboard'))
                                         <a href="{{ url('/dashboard') }}" class="btn head-btn1">
                                             Dashboard
                                         </a>
-                                    @endunless
+                                    @endunless --}}
 
                                     <!-- Dropdown Gambar + Nama User -->
                                     <div class="dropdown d-inline-block ms-3 ml-3">
@@ -47,8 +47,8 @@
                                     <span class="text-dark fw-semibold ml-3">{{ Auth::user()->name }}</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
                                     <li><a class="dropdown-item" href="">Profil</a></li>
-                                    <li><a class="dropdown-item" href="">Log Activity</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">

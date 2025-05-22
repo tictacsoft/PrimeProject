@@ -7,32 +7,43 @@
                     <span class="hide-menu">Personal</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                        aria-expanded="false">
+                    <a class="sidebar-link" href="javascript:void(0)">
                         <i class="mdi mdi-av-timer"></i>
                         <span class="hide-menu">Dashboard </span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark" href="/admin/users"
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
-                        <span class="hide-menu">Users </span>
+                        <i class="mdi mdi-tune"></i>
+                        <span class="hide-menu">Master Data </span>
                     </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-dark" href="/admin/roles"
-                        aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
-                        <span class="hide-menu">Roles </span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-dark" href="/admin/permissions"
-                        aria-expanded="false">
-                        <i class="mdi mdi-av-timer"></i>
-                        <span class="hide-menu">Permissions </span>
-                    </a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item">
+                            <a href="/admin/company" class="sidebar-link">
+                                <i class="mdi mdi-adjust"></i>
+                                <span class="hide-menu"> Company </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/admin/users" class="sidebar-link">
+                                <i class="mdi mdi-adjust"></i>
+                                <span class="hide-menu"> Users </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/admin/roles" class="sidebar-link">
+                                <i class="mdi mdi-adjust"></i>
+                                <span class="hide-menu"> Roles </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/admin/permissions" class="sidebar-link">
+                                <i class="mdi mdi-adjust"></i>
+                                <span class="hide-menu"> Permissions </span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>

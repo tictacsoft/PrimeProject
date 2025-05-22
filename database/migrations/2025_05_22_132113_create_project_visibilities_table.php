@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('freelance_details', function (Blueprint $table) {
+        Schema::create('project_visibilities', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->text('certification')->nullable();
-            $table->text('work_experience')->nullable();
+            $table->unsignedBigInteger('project_id')->nullable();
+            $table->unsignedBigInteger('supplier_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('freelance_details');
+        Schema::dropIfExists('project_visibilities');
     }
 };

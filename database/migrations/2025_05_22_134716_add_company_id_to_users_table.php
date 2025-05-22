@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('supplier_detail', function (Blueprint $table) {
-            $table->id();
-            $table->string(column: 'user_id');
-            $table->text(column: 'supplier_name');
-            $table->text('npwp')->nullable();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('company_id')->nullable();
+
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
@@ -25,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('supplier_detail');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

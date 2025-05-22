@@ -19,8 +19,10 @@ class AuthController extends Controller
         $password = $request->password;
 
         if (Auth::guard('web')->attempt(['email' => $email, 'password' => $password])) {
+            Session::flash('success', 'Login Success');
             return redirect('/');
         } else {
+            Session::flash('success', 'Email and password wrong');
             return redirect('/login');
         }
     }
@@ -31,8 +33,6 @@ class AuthController extends Controller
         $name = $request->name;
         $email = $request->email;
         $phoneno = $request->phoneno;
-        $npwp = $request->npwp;
-        $company_name = $request->company_name;
         $password = $request->password;
 
         if ($role == "freelance") {
@@ -52,12 +52,6 @@ class AuthController extends Controller
             $user->password = Hash::make($password);
             $user->save();
 
-            $clients = new Clients();
-            $clients->user_id = $user->id;
-            $clients->company_name = $company_name;
-            $clients->npwp = $npwp;
-            $clients->save();
-
             $user->assignRole('client');
         }else if ($role == "supplier") {
             $user = new User();
@@ -67,14 +61,10 @@ class AuthController extends Controller
             $user->password = Hash::make($password);
             $user->save();
 
-            $company = new Company();
-            $company->user_id = $user->id;
-            $company->company_name = $company_name;
-            $company->npwp = $npwp;
-            $company->save();
-
             $user->assignRole('supplier');
         }
+
+        Session::flash('success', 'Registered Success');
 
         return redirect('/');
     }

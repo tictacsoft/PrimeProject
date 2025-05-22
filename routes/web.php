@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthenticationController;
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RolesController;
@@ -15,13 +16,11 @@ Route::get('/login', [HomeController::class, 'login']);
 Route::get('/forgot-password', [HomeController::class, 'forgotpassword']);
 Route::get('/register/{url?}', [HomeController::class, 'register']);
 Route::post('/signin', [AuthController::class, 'signin']);
-Route::post('/signup', [AuthController::class, 'signup']);
+Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/job-request', [ClientsController::class, 'index'])->name('job-request');
-    Route::post('/job-request', [ClientsController::class, 'store'])->name('job-request.store');
 });
 
 // Admin
@@ -34,6 +33,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('/admin/roles', RolesController::class);
     Route::resource('/admin/permissions', PermissionController::class);
     Route::resource('/admin/users', UsersController::class);
+    Route::resource('/admin/company', CompanyController::class);
     Route::get('/admin/users/{id}/permissions', [UsersController::class, 'getPermission']);
     Route::put('/admin/users/permissions/update/{id}', [UsersController::class, 'updatePermission']);
 

@@ -1,10 +1,10 @@
 @extends('admin.layout.master')
-@section('title', 'Permissions')
+@section('title', 'Company')
 @section('content')
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-5 align-self-center">
-                <h4 class="page-title">Permissions</h4>
+                <h4 class="page-title">Company</h4>
             </div>
             <div class="col-7 align-self-center">
                 <div class="d-flex align-items-center justify-content-end">
@@ -13,7 +13,7 @@
                             <li class="breadcrumb-item">
                                 <a href="#">Home</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Permissions</li>
+                            <li class="breadcrumb-item active" aria-current="page">Company</li>
                         </ol>
                     </nav>
                 </div>
@@ -26,7 +26,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">View Permissions</h4>
+                        <h4 class="card-title">View Company</h4>
                         <div class="table-responsive">
                             <table id="file_export" class="table table-striped table-bordered display">
                                 <thead>
@@ -40,13 +40,13 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @forelse ($permissions as $permission)
+                                    @forelse ($companies as $company)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $permission->name }}</td>
+                                            <td>{{ $company->name }}</td>
                                             <td>
-                                                <button class="btn btn-warning btn-sm">Edit</button>
-                                                <button class="btn btn-danger btn-sm">Delete</button>
+                                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                     @empty
@@ -59,22 +59,22 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addPerm">Add</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addCompany">Add</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="addPerm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade" id="addCompany" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Create Permissions</h4>
+                    <h4 class="modal-title" id="myLargeModalLabel">Create Company</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
-                <form action="{{ route('permissions.store') }}" method="post">
+                <form action="{{ route('company.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <label for="name">Name</label>
