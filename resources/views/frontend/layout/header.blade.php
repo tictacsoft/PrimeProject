@@ -48,7 +48,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="userDropdown">
                                     <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
-                                    <li><a class="dropdown-item" href="">Profil</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('profile') }}">Profil</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">

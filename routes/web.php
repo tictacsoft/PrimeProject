@@ -22,6 +22,7 @@ Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/view-profile', [AuthController::class, 'viewProfile'])->name('profile');
 });
 
 // Admin

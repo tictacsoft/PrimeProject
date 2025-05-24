@@ -76,4 +76,10 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    public function viewProfile()
+    {
+        $user = Auth::user();
+        return view('frontend.profile.index', compact('user'));
+    }
 }
