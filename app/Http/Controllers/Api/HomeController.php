@@ -7,6 +7,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Models\JobRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -51,11 +52,16 @@ class HomeController extends Controller
 
     public function getcompany(Request $request)
     {
-        $data = Company::select("name")
-            ->where('name', 'LIKE', '%' . $request->get('query') . '%')
-            ->take(10)
-            ->get();
+        $search = $request->q;
+        $role = $request->role;
 
-        return response()->json($data);
+        $query = DB::table('companies')
+            ->select('id', 'name')
+            ->where('type', '=',$role)
+            ->where('name', 'like', "%$search%");
+
+        $company = $query->get();
+
+        return response()->json($company);
     }
 }

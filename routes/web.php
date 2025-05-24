@@ -15,7 +15,7 @@ Route::get('/', [HomeController::class, 'home']);
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/forgot-password', [HomeController::class, 'forgotpassword']);
 Route::get('/register/{url?}', [HomeController::class, 'register']);
-Route::get('/getcompany', [HomeController::class, 'getcompany']);
+Route::get('/getcompany', [HomeController::class, 'getcompany'])->name('getcompany');
 Route::post('/signin', [AuthController::class, 'signin']);
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 

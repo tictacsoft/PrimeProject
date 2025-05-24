@@ -51,6 +51,12 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <input class="form-control" name="company" id="company" type="text"
+                                                    placeholder="Enter Company">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
                                                 <input class="form-control" name="password" id="password" type="password"
                                                     placeholder="Enter password">
                                             </div>
@@ -75,3 +81,20 @@
     </section>
 
 @endsection
+@push('scripts')
+    <script>
+        var path = "{{ route('getcompany') }}";
+        var role = document.getElementById('role').value;
+
+        $('#company').typeahead({
+            source: function(query, process) {
+                return $.get(path, {
+                    role:role,
+                    query: query
+                }, function(data) {
+                    return process(data);
+                });
+            }
+        });
+    </script>
+@endpush

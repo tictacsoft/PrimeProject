@@ -26,7 +26,8 @@
                         </div>
                         <div class="card-body">
                             <div class="col-lg-12">
-                                <form class="form-contact" action="{{ route('signup') }}" method="post">
+                                <form class="form-contact" action="{{ route('signup') }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input name="role" id="role" type="hidden" value="client">
                                     <div class="row">
@@ -48,10 +49,10 @@
                                                     placeholder="Enter phone no.">
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mb-3">
                                             <div class="form-group">
-                                                <input class="form-control" name="company" id="company" type="text"
-                                                    placeholder="Enter Company">
+                                                <input class="form-control w-100 h-100 p-5" id="company"
+                                                    style="width: 100%;"></input>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -81,16 +82,45 @@
 @endsection
 @push('scripts')
     <script>
-        var path = "{{ route('autocomplete') }}";
-
-        $('#search').typeahead({
-            source: function(query, process) {
-                return $.get(path, {
-                    query: query
-                }, function(data) {
-                    return process(data);
-                });
-            }
+        $(document).ready(function() {
+            $('#company').select2({
+                placeholder: 'Please select company',
+                ajax: {
+                    url: '{{ route('getcompany') }}',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: params.term,
+                            role: $('#role').val()
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    text: item.name,
+                                    id: item.id
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
         });
+        // var path = "{{ route('getcompany') }}";
+        // var role = document.getElementById('role').value;
+
+        // $('#company').typeahead({
+        //     source: function(query, process) {
+        //         return $.get(path, {
+        //             role:role,
+        //             query: query
+        //         }, function(data) {
+        //             return process(data);
+        //         });
+        //     }
+        // });
     </script>
 @endpush
