@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('status')->default('pending');
+            $table->string('status');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->unsignedBigInteger('client_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->timestamps();

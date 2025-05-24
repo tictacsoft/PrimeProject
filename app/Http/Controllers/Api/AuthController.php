@@ -40,31 +40,33 @@ class AuthController extends Controller
                 'name' => $name,
                 'email' => $email,
                 'phoneno' => $phoneno,
+                'role' => $role,
                 'password' => Hash::make($password),
             ]);
 
-            $user->assignRole('freelance');
         } else if ($role == "client") {
-            $user = new User();
-            $user->name = $name;
-            $user->email = $email;
-            $user->phoneno = $phoneno;
-            $user->password = Hash::make($password);
-            $user->save();
-
-            $user->assignRole('client');
+            $user = User::create([
+                'name' => $name,
+                'email' => $email,
+                'phoneno' => $phoneno,
+                'role' => $role,
+                'password' => Hash::make($password),
+            ]);
         }else if ($role == "supplier") {
-            $user = new User();
-            $user->name = $name;
-            $user->email = $email;
-            $user->phoneno = $phoneno;
-            $user->password = Hash::make($password);
-            $user->save();
-
-            $user->assignRole('supplier');
+            $user = User::create([
+                'name' => $name,
+                'email' => $email,
+                'phoneno' => $phoneno,
+                'role' => $role,
+                'password' => Hash::make($password),
+            ]);
         }
 
-        Session::flash('success', 'Registered Success');
+        if ($user) {
+            Session::flash('success', 'Registered Success');
+        }else{
+            Session::flash('success', 'Registered Failed');
+        }
 
         return redirect('/');
     }

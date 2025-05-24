@@ -27,6 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">View Permissions</h4>
+                        @include('admin.layout.flash')
                         <div class="table-responsive">
                             <table id="file_export" class="table table-striped table-bordered display">
                                 <thead>
@@ -43,10 +44,18 @@
                                     @forelse ($permissions as $permission)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $permission->name }}</td>
-                                            <td>
-                                                <button class="btn btn-warning btn-sm">Edit</button>
-                                                <button class="btn btn-danger btn-sm">Delete</button>
+                                            <td>{{ $permission }}</td>
+                                            <td class="d-flex">
+                                                <a href="{{ route('permissions.edit', [$permission]) }}"
+                                                    class="btn btn-warning btn-sm mr-2"><i
+                                                        class="fa-solid fa-pen-to-square"></i></a>
+                                                <form action="{{ route('permissions.destroy', [$permission]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                                            class="fa-solid fa-trash"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty
@@ -82,7 +91,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary waves-effect text-left">Add</button>
-                        <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger waves-effect text-left"
+                            data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

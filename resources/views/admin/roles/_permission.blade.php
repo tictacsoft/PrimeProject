@@ -1,10 +1,13 @@
 <div class="card">
-    <div class="card-header" id="heading-{{ isset($title) ? Str::slug($title) : 'permission-heading' }}">
-        <a class="btn btn-link collapsed" data-toggle="collapse"
+    <div class="card-header d-flex align-items-center"
+        id="heading-{{ isset($title) ? Str::slug($title) : 'permission-heading' }}">
+        <a class="btn btn-link collapsed mr-auto" data-toggle="collapse"
             data-target="#collapse-{{ isset($title) ? Str::slug($title) : 'permission-heading' }}" aria-expanded="false"
             aria-controls="collapse-{{ isset($title) ? Str::slug($title) : 'permission-heading' }}">
             {{ $title }}
         </a>
+        <a href="{{ route('roles.edit', [$role->id]) }}" class="btn btn-warning btn-sm">Edit</a>
+        <a href="#" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteRoles">Delete</a>
     </div>
 
     <div id="collapse-{{ isset($title) ? Str::slug($title) : 'permission-heading' }}" class="collapse"
@@ -42,3 +45,5 @@
         </div>
     </div>
 </div>
+
+

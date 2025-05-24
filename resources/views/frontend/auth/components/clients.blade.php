@@ -22,7 +22,7 @@
                 <div class="col-12 col-md-12">
                     <div class="card shadow">
                         <div class="card-header border-0 bg-white">
-                           <h2 class="contact-title text-center my-2 mb-2">Clients</h2>
+                            <h2 class="contact-title text-center my-2 mb-2">Clients</h2>
                         </div>
                         <div class="card-body">
                             <div class="col-lg-12">
@@ -50,14 +50,20 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <input class="form-control" name="company" id="company" type="text"
+                                                    placeholder="Enter Company">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
                                                 <input class="form-control" name="password" id="password" type="password"
                                                     placeholder="Enter password">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input class="form-control" name="confirm_password" id="confirm_password" type="password"
-                                                    placeholder="Enter confirm password">
+                                                <input class="form-control" name="confirm_password" id="confirm_password"
+                                                    type="password" placeholder="Enter confirm password">
                                             </div>
                                         </div>
                                     </div>
@@ -72,6 +78,19 @@
             </div>
         </div>
     </section>
-
-
 @endsection
+@push('scripts')
+    <script>
+        var path = "{{ route('autocomplete') }}";
+
+        $('#search').typeahead({
+            source: function(query, process) {
+                return $.get(path, {
+                    query: query
+                }, function(data) {
+                    return process(data);
+                });
+            }
+        });
+    </script>
+@endpush

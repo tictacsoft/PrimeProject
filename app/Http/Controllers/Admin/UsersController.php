@@ -17,7 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $this->data['users'] = User::role(['freelance', 'client', 'supplier'])->get();
+        $this->data['users'] = User::where('role', '!=', 'admin')->get();
         return view('admin.users.index', $this->data);
     }
 
@@ -69,51 +69,55 @@ class UsersController extends Controller
         //
     }
 
-    public function getPermission($id)
-    {
-        $this->data['user'] = User::find($id);
-        $this->data['roles'] = Role::pluck('name', 'id');
-        $this->data['permissions'] = Permission::all('name', 'id');
-        return view('admin.users.permission', $this->data);
+    public function assignRole($id){
+
     }
 
-    private function syncPermissions(Request $request, $user)
-    {
-        // Get the submitted roles
-        $roles = $request->get('roles', []);
-        $permissions = $request->get('permissions', []);
+    // public function getPermission($id)
+    // {
+    //     $this->data['user'] = User::find($id);
+    //     $this->data['roles'] = Role::pluck('name', 'id');
+    //     $this->data['permissions'] = Permission::all('name', 'id');
+    //     return view('admin.users.permission', $this->data);
+    // }
 
-        // Get the roles
-        $roles = Role::find($roles);
+    // private function syncPermissions(Request $request, $user)
+    // {
+    //     // Get the submitted roles
+    //     $roles = $request->get('roles', []);
+    //     $permissions = $request->get('permissions', []);
 
-        // check for current role changes
-        if (! $user->hasAllRoles($roles)) {
-            // reset all direct permissions for user
-            $user->permissions()->sync([]);
-        } else {
-            // handle permissions
-            $user->syncPermissions($permissions);
-        }
+    //     // Get the roles
+    //     $roles = Role::find($roles);
 
-        $user->syncRoles($roles);
+    //     // check for current role changes
+    //     if (! $user->hasAllRoles($roles)) {
+    //         // reset all direct permissions for user
+    //         $user->permissions()->sync([]);
+    //     } else {
+    //         // handle permissions
+    //         $user->syncPermissions($permissions);
+    //     }
 
-        return $user;
-    }
+    //     $user->syncRoles($roles);
 
-    public function updatePermission(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
+    //     return $user;
+    // }
 
-        DB::transaction(function () use ($request, $user) {
-            $user->fill($request->except('roles', 'permissions'));
+    // public function updatePermission(Request $request, $id)
+    // {
+    //     $user = User::findOrFail($id);
 
-            $this->syncPermissions($request, $user);
+    //     DB::transaction(function () use ($request, $user) {
+    //         $user->fill($request->except('roles', 'permissions'));
 
-            $user->save();
+    //         $this->syncPermissions($request, $user);
 
-            Session::flash('success', 'User Permission has been saved');
-        });
+    //         $user->save();
 
-        return redirect('/admin/users');
-    }
+    //         Session::flash('success', 'User Permission has been saved');
+    //     });
+
+    //     return redirect('/admin/users');
+    // }
 }

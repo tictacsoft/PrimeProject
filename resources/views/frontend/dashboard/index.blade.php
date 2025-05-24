@@ -22,7 +22,12 @@
                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                             aria-labelledby="v-pills-profile-tab">
                             <h5>{{ Auth::user()->name }}</h5>
-                            <p>{{ Auth::user()->roles[0]['name'] }}</p>
+                            <p>Default</p>
+                            {{-- @if (Auth::user()->role == Auth::user()->roles[0]['name'])
+                                <p>{{ Auth::user()->roles[0]['name'] }}</p>
+                            @else
+                                 <p>Default</p>
+                            @endif --}}
                         </div>
                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                             aria-labelledby="v-pills-messages-tab">...</div>

@@ -33,7 +33,19 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:roles,name'
+        ]);
 
+        $store = Role::create(['name' => $request->name]);
+
+        if ($store) {
+            Session::flash('success', 'Roles has saved');
+        }else{
+            Session::flash('error', 'Roles already have it');
+        }
+
+        return redirect('admin/roles');
     }
 
     /**
@@ -49,27 +61,29 @@ class RolesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $role = Role::find($id);
+        return view('admin.roles.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        // Session::flash('success', $role->name . ' permissions has been updated.');
+        $request->validate([
+            'name' => 'required|unique:roles,name'
+        ]);
 
-        // if ($role->name == 'Admin') {
-        //     $role->syncPermissions(permissions: Permission::all());
+        $update = Role::find($id);
+        $update->name = $request->name;
 
-        //     return redirect('/admin/roles');
-        // }
+        if ($update->save()) {
+            Session::flash('success', 'Roles has updated');
+        }else{
+            Session::flash('error', 'Roles updated failed');
+        }
 
-        $permissions = $request->get('permissions', []);
-
-        $role->syncPermissions($permissions);
-
-        return redirect('/admin/roles');
+        return redirect('admin/roles');
     }
 
     /**
@@ -77,6 +91,29 @@ class RolesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $roles = Role::find($id);
+
+        if ($roles->delete()) {
+            Session::flash('success', 'Roles has deleted');
+        }else{
+            Session::flash('error', 'Roles deleted failed');
+        }
+
+        return redirect('/admin/roles');
+    }
+
+    public function updatePermissions(Request $request, Role $role)
+    {
+        $permissions = $request->get('permissions', []);
+
+        $roles = $role->syncPermissions($permissions);
+
+        if ($roles) {
+            Session::flash('success', 'Permissions has updated');
+        }else{
+            Session::flash('error', 'Permissions updated failed');
+        }
+
+        return redirect('/admin/roles');
     }
 }
