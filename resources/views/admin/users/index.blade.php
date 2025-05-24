@@ -49,7 +49,12 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phoneno }}</td>
                                             <td>
-                                                <a href="/admin/users/{{ $user->id }}/permissions" class="btn btn-sm btn-primary">Permission</a>
+                                                <form action="{{ route('assign.role') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                                    <input type="hidden" name="role" value="{{ $user->role }}">
+                                                    <button type="submit" class="btn btn-primary btn-sm">Approve</button>
+                                                </form>
                                                 <button class="btn btn-warning btn-sm">Edit</button>
                                                 <button class="btn btn-danger btn-sm">Delete</button>
                                             </td>

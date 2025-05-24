@@ -51,8 +51,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input class="form-control" name="company" id="company" type="text"
-                                                    placeholder="Enter Company">
+                                                <select id="company" name="company" style="width: 100%;"></select>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -83,18 +82,45 @@
 @endsection
 @push('scripts')
     <script>
-        var path = "{{ route('getcompany') }}";
-        var role = document.getElementById('role').value;
+        // var path = "{{ route('getcompany') }}";
+        // var role = document.getElementById('role').value;
 
-        $('#company').typeahead({
-            source: function(query, process) {
-                return $.get(path, {
-                    role:role,
-                    query: query
-                }, function(data) {
-                    return process(data);
-                });
-            }
+        // $('#company').typeahead({
+        //     source: function(query, process) {
+        //         return $.get(path, {
+        //             role: role,
+        //             query: query
+        //         }, function(data) {
+        //             return process(data);
+        //         });
+        //     }
+        // });
+        $(document).ready(function() {
+            $('#company').select2({
+                placeholder: 'Please select company',
+                ajax: {
+                    url: '{{ route('getcompany') }}',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: params.term,
+                            role: $('#role').val()
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    text: item.name,
+                                    id: item.id
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
         });
     </script>
 @endpush

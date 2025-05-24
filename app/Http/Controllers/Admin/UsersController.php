@@ -17,7 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $this->data['users'] = User::where('role', '!=', 'admin')->get();
+        $this->data['users'] = User::where('role', '!=', 'superadmin')->get();
         return view('admin.users.index', $this->data);
     }
 
@@ -69,7 +69,20 @@ class UsersController extends Controller
         //
     }
 
-    public function assignRole($id){
+    public function assignRole(Request $request){
+        $role = $request->role;
+        $id = $request->user_id;
+
+        $user = User::find($id);
+
+        if ($user->assignRole($role)) {
+            Session::flash('success', 'Approve success');
+        }else{
+            Session::flash('error', 'Approve failed');
+        }
+
+        return redirect('admin/users');
+
 
     }
 
