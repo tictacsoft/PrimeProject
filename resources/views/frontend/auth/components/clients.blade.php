@@ -51,8 +51,7 @@
                                         </div>
                                         <div class="col-12 mb-3">
                                             <div class="form-group">
-                                                <input class="form-control w-100 h-100 p-5" id="company"
-                                                    style="width: 100%;"></input>
+                                                <select id="company" name="company" style="width: 100%;"></select>
                                             </div>
                                         </div>
                                         <div class="col-12">

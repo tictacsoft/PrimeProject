@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin, role:admin']], function
     Route::post('/admin/roles/permissions/update', [RolesController::class, 'updatePermissions'])->name('roles.permissions.update');
     Route::resource('/admin/permissions', PermissionController::class);
     Route::resource('/admin/users', UsersController::class);
+    Route::post('/admin/users/approve', [UsersController::class, 'assignRole'])->name('assign.role');
     Route::resource('/admin/company', CompanyController::class);
     // Route::get('/admin/users/{id}/permissions', [UsersController::class, 'getPermission']);
     // Route::put('/admin/users/permissions/update/{id}', [UsersController::class, 'updatePermission']);

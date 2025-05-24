@@ -29,11 +29,13 @@ class AuthController extends Controller
 
     public function signup(Request $request)
     {
+
         $role = $request->role;
         $name = $request->name;
         $email = $request->email;
         $phoneno = $request->phoneno;
         $password = $request->password;
+        $company = $request->company;
 
         if ($role == "freelance") {
             $user = User::create([
@@ -50,7 +52,9 @@ class AuthController extends Controller
                 'email' => $email,
                 'phoneno' => $phoneno,
                 'role' => $role,
+                'company_id' => $company,
                 'password' => Hash::make($password),
+
             ]);
         }else if ($role == "supplier") {
             $user = User::create([
@@ -58,6 +62,7 @@ class AuthController extends Controller
                 'email' => $email,
                 'phoneno' => $phoneno,
                 'role' => $role,
+                'company_id' => $company,
                 'password' => Hash::make($password),
             ]);
         }
