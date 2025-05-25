@@ -20,7 +20,7 @@ Route::get('/getcompany', [HomeController::class, 'getcompany'])->name('getcompa
 Route::post('/signin', [AuthController::class, 'signin']);
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 
-Route::group(['middleware' => ['auth', 'role:client']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('/projects', ProjectsController::class);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

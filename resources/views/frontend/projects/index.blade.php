@@ -1,42 +1,53 @@
 @extends('frontend.layout.master')
-@section('title', 'Dashboard')
+@section('title', 'Projects')
 @section('content')
     <section class="contact-section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h5>Create Projects</h5>
+                    @include('frontend.layout.flash')
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">View Projects</h5>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Project Name</th>
+                                        <th scope="col">Start Date</th>
+                                        <th scope="col">End Date</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @forelse ($projects as $project)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $project->name }}</td>
+                                            <td>{{ $project->start_date }}</td>
+                                            <td>{{ $project->end_date }}</td>
+                                            <td>{{ $project->description }}</td>
+                                            <td>{{ $project->status }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ route('projects.create') }}" class="btn btn-primary">Create Projects</a>
+                        </div>
+                    </div>
                 </div>
-                <form action="{{ route('projects.store') }}" method="POST" class="w-100">
-                    @csrf
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="project_name">Project Name</label>
-                            <input type="text" class="form-control" id="project_name" name="project_name"
-                                placeholder="Project Name">
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="start_date">Start Date</label>
-                            <input type="date" class="form-control" id="start_date" name="start_date"
-                                placeholder="Project Name">
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="end_date">End Date</label>
-                            <input type="date" class="form-control" id="end_date" name="end_date"
-                                placeholder="Project Name">
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea class="form-control" id="description" rows="3" name="description"></textarea>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
