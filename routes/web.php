@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\api\ClientsController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\ProjectsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home']);
@@ -19,8 +20,9 @@ Route::get('/getcompany', [HomeController::class, 'getcompany'])->name('getcompa
 Route::post('/signin', [AuthController::class, 'signin']);
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'role:client']], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::resource('/projects', ProjectsController::class);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
@@ -32,7 +34,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin, role:admin']], function
     Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
     Route::resource('/admin/roles', RolesController::class);
-    Route::post('/admin/roles/permissions/update', [RolesController::class, 'updatePermissions'])->name('roles.permissions.update');
+    Route::put('/admin/roles/update/{id}', [RolesController::class, 'updateRoles'])->name('update.roles');
     Route::resource('/admin/permissions', PermissionController::class);
     Route::resource('/admin/users', UsersController::class);
     Route::post('/admin/users/approve', [UsersController::class, 'assignRole'])->name('assign.role');

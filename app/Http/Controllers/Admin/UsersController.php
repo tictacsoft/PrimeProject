@@ -18,6 +18,8 @@ class UsersController extends Controller
     public function index()
     {
         $this->data['users'] = User::where('role', '!=', 'superadmin')->get();
+        $this->data['roles'] = Role::pluck('name', 'id');
+        $this->data['roles_users'] = DB::select('SELECT model_id FROM model_has_roles');
         return view('admin.users.index', $this->data);
     }
 

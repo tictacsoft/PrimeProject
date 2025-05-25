@@ -20,6 +20,7 @@
     <section class="contact-section">
         <div class="container d-flex justify-content-center  align-items-center">
             <div class="row ">
+                @include('frontend.layout.flash')
                 <div class="col-12 col-md-12">
                     <div class="card shadow">
                         <div class="card-header border-0 bg-white">
@@ -55,6 +56,6 @@
                 </div>
             </div>
         </div>
-    </section>                        
+    </section>
 
 @endsection

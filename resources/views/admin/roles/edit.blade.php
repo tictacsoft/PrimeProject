@@ -29,7 +29,7 @@
                     <div class="card-header card-header-border-bottom">
                         <h2>Edit Roles</h2>
                     </div>
-                    <form action="{{ route('roles.update', [$role->id]) }}" method="POST">
+                    <form action="{{ route('update.roles', ['id' => $role->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
