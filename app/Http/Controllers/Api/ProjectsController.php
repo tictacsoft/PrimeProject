@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ProjectsController extends Controller
 {
@@ -12,7 +15,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        return view('frontend.projects.index');
+        $this->data['projects'] = Project::where('client_id', '=', Auth::user()->id)->get();
+        return view('frontend.projects.index', $this->data);
     }
 
     /**
@@ -20,7 +24,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.projects.create');
     }
 
     /**
@@ -28,7 +32,31 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(Auth::user()->company_id);
+        $request->validate([
+            'project_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'description' => 'required',
+        ]);
+
+        $store = Project::create([
+            'name' => $request->project_name,
+            'description' => $request->description,
+            'status' => 'pending',
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'client_id' => Auth::user()->id,
+            'company_id' => Auth::user()->company_id,
+        ]);
+
+        if ($store) {
+            Session::flash('success', 'Project create success');
+        }else{
+            Session::flash('error', 'Project create failed');
+        }
+
+        return redirect('/projects');
     }
 
     /**
