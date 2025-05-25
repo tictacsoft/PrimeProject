@@ -18,7 +18,7 @@
   }
 
   .rotate.down {
-    transform: rotate(90deg); /* arah panah saat collapse terbuka */
+    transform: rotate(90deg);
   }
 </style>
 @endpush
@@ -28,20 +28,20 @@
             <div class="row">
                 <div class="col-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link text-dark active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
-                            role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-                        <a class="nav-link text-dark" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                        <a class="nav-link text-dark" href="#">Projects</a>
+                        <a class="nav-link text-dark {{ request('tab') != 'profile' ? 'active' : '' }}" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                            role="tab" aria-controls="v-pills-home" aria-selected="{{ request('tab') != 'profile' ? 'true' : 'false' }}">Home</a>
+                        <a class="nav-link text-dark {{ request('tab') == 'profile' ? 'active' : '' }}" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="{{ request('tab') == 'profile' ? 'true' : 'false' }}">Profile</a>
+                        {{-- <a class="nav-link text-dark" href="#">Projects</a> --}}
                     </div>
                 </div>
                 <div class="col-9">
                     <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                        <div class="tab-pane fade {{ request('tab') != 'profile' ? 'show active' : '' }}" id="v-pills-home" role="tabpanel"
                             aria-labelledby="v-pills-home-tab">
                             <h5>Welcome to Dashboard</h5>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        <div class="tab-pane fade {{ request('tab') == 'profile' ? 'show active' : '' }}" id="v-pills-profile" role="tabpanel"
                             aria-labelledby="v-pills-profile-tab">
                         
                         <form action="">    
@@ -110,7 +110,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row mb-5">
                                 <div class="col-6">
                                     <div class="card shadow">
@@ -205,7 +204,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row mb-5">
                                 <div class="col-6">
                                     <div class="card shadow">
@@ -295,6 +293,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
 
                             <div class="row mb-5">
@@ -358,8 +357,8 @@
                                  <p>Default</p>
                             @endif --}}
                         </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                            aria-labelledby="v-pills-messages-tab">...</div>
+                        {{-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                            aria-labelledby="v-pills-messages-tab">...</div> --}}
                     </div>
                 </div>
             </div>
