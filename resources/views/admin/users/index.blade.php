@@ -27,6 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">View Users</h4>
+                        @include('admin.layout.flash')
                         <div class="table-responsive">
                             <table id="file_export" class="table table-striped table-bordered display">
                                 <thead>
@@ -48,19 +49,28 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phoneno }}</td>
-                                            <td>
-                                                <form action="{{ route('assign.role') }}" method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                                    <input type="hidden" name="role" value="{{ $user->role }}">
-                                                    <button type="submit" class="btn btn-primary btn-sm">Approve</button>
-                                                </form>
-                                                <button class="btn btn-warning btn-sm">Edit</button>
+                                            <td class="d-flex">
+                                                @php
+                                                    $dataArray = json_decode($user->roles);
+                                                    $role = current($dataArray);
+                                                @endphp
+                                                @if (!empty($dataArray))
+
+                                                @else
+                                                    <form action="{{ route('assign.role') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                                        <input type="hidden" name="role" value="{{ $user->role }}">
+                                                        <button type="submit"
+                                                            class="btn btn-primary btn-sm mr-2">Approve</button>
+                                                    </form>
+                                                @endif
+                                                <button class="btn btn-warning btn-sm mr-2">Edit</button>
                                                 <button class="btn btn-danger btn-sm">Delete</button>
                                             </td>
                                         </tr>
                                     @empty
-                                        <tr >
+                                        <tr>
                                             <td colspan="5">Not Found</td>
                                         </tr>
                                     @endforelse

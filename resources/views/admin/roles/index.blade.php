@@ -32,7 +32,7 @@
                         @include('admin.layout.flash')
                         <div id="accordion-role-permission" class="accordion accordion-bordered ">
                             @forelse ($roles as $role)
-                                <form action="{{ route('roles.permissions.update', [$role->id]) }}" method="post">
+                                <form action="{{ route('roles.update', [$role->id]) }}" method="post">
                                     @csrf
                                     @method('PUT')
                                     @include('admin.roles._permission', [

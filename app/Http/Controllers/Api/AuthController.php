@@ -20,7 +20,7 @@ class AuthController extends Controller
 
         if (Auth::guard('web')->attempt(['email' => $email, 'password' => $password])) {
             Session::flash('success', 'Login Success');
-            return redirect('/');
+            return redirect('/dashboard');
         } else {
             Session::flash('success', 'Email and password wrong');
             return redirect('/login');
@@ -70,10 +70,10 @@ class AuthController extends Controller
         if ($user) {
             Session::flash('success', 'Registered Success');
         }else{
-            Session::flash('success', 'Registered Failed');
+            Session::flash('error', 'Registered Failed');
         }
 
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function logout(){
